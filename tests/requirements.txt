@@ -12,3 +12,4 @@ pylint
 pytest-dash>=2.1.1
 colour==0.1.5
 biopython
+ipython>=8.10.0 # not directly required, pinned by Snyk to avoid a vulnerability
