@@ -4,3 +4,5 @@ plotly
 dash==0.39.0
 
 colour==0.1.5
+dash-core-components>=2.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
+dash-html-components>=2.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
