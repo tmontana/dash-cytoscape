@@ -1,0 +1,32 @@
+Sub GetPreviousVersions()
+    Dim objWMIService As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim ws As Worksheet
+    Dim i As Integer
+
+    ' Create a new worksheet to hold the results
+    Set ws = ThisWorkbook.Sheets.Add
+    ws.Name = "Previous Versions"
+    ws.Range("A1:E1").Value = Array("DeviceObject", "VolumeName", "ShadowCopyID", "InstallDate", "Description")
+
+    ' Connect to WMI
+    Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+    ' Get the shadow copies
+    Set colItems = objWMIService.ExecQuery("SELECT * FROM Win32_ShadowCopy")
+
+    i = 2
+    ' Loop through each shadow copy
+    For Each objItem In colItems
+        If InStr(1, objItem.DeviceObject, "Z:", vbTextCompare) > 0 Then ' Replace "Z:" with your drive letter
+            ws.Cells(i, 1).Value = objItem.DeviceObject
+            ws.Cells(i, 2).Value = objItem.VolumeName
+            ws.Cells(i, 3).Value = objItem.ID
+            ws.Cells(i, 4).Value = objItem.InstallDate
+            ws.Cells(i, 5).Value = objItem.Description
+            i = i + 1
+        End If
+    Next objItem
+
+    MsgBox "Done! Check the 'Previous Versions' sheet.", vbInformation
+End Sub
