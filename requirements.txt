@@ -4,3 +4,4 @@ plotly
 dash==0.39.0
 
 colour==0.1.5
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
