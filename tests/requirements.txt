@@ -12,3 +12,5 @@ pylint
 pytest-dash>=2.1.1
 colour==0.1.5
 biopython
+waitress>=3.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
+werkzeug>=3.0.6 # not directly required, pinned by Snyk to avoid a vulnerability
